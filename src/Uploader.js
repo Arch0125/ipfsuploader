@@ -24,10 +24,10 @@ const Uploader = () => {
             image : filePath,
             name : name,
             description : description,
-            atttributes : {
+            atttributes : [{
                 "trait_type" : trait,
                 "value": value
-            }
+            }]
         })
 
         console.log(res)
