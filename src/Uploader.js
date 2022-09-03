@@ -32,7 +32,7 @@ const Uploader = () => {
 
         console.log(res)
         setUrl(res.url)
-        setIpfsimage(res.ipnft)
+        setIpfsimage("https://ipfs.io/ipfs/"+(res.data.image.href).slice(7))
     }
 
     return ( 
@@ -44,7 +44,7 @@ const Uploader = () => {
             <input onChange={(e)=>setValue(e.target.value)} placeholder="Enter Value" />
             <button onClick={()=>storeNFT(filePath,name,description)} >Upload to IPFS</button>
             <label>Metadata : {url}</label>
-            <img src={`https://ipfs.io/ipfs/${ipfsimage}`} />
+            {<img src={ipfsimage} width='30%' />}
         </div>
      );
 }
