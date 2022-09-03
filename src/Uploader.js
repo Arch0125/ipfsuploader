@@ -11,6 +11,8 @@ const Uploader = () => {
     const[url,setUrl]=useState(null);
     const[ipfsimage,setIpfsimage]=useState(null);
     const[description,setDescription]=useState('');
+    const[trait,setTrait]=useState('');
+    const[value,setValue]=useState('');
     const NFT_STORAGE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGM0QThkRENiMGM1MjQwQTJDYjdBMzIwZGRGMDg5QUJhMERDNDVDZkYiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY2MjE5NTgzMzEwMywibmFtZSI6InRwZyJ9.ncleHk0ziyvHC-8RSKo07nxdgJ9OidmguX_YzX-L0p4'
 
     const storeNFT=async(filePath,name,description)=>{
@@ -22,6 +24,10 @@ const Uploader = () => {
             image : filePath,
             name : name,
             description : description,
+            atttributes : {
+                "trait_type" : trait,
+                "value": value
+            }
         })
 
         console.log(res)
@@ -34,6 +40,8 @@ const Uploader = () => {
             <input type={'file'} onChange={(e)=>setFilePath(e.target.files[0])} />
             <input onChange={(e)=>setName(e.target.value)} placeholder="Enter NFT Name" />
             <input onChange={(e)=>setDescription(e.target.value)} placeholder="Enter description" />
+            <input onChange={(e)=>setTrait(e.target.value)} placeholder="Enter Trait Type" />
+            <input onChange={(e)=>setValue(e.target.value)} placeholder="Enter Value" />
             <button onClick={()=>storeNFT(filePath,name,description)} >Upload to IPFS</button>
             <label>Metadata : {url}</label>
             <img src={`https://ipfs.io/ipfs/${ipfsimage}`} />
